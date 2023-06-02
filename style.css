@@ -1,4 +1,6 @@
-body, .page {
+/* STILL TO DO: get background for gameplay and design scoreboard page */
+
+.homepage {
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -7,13 +9,11 @@ body, .page {
     display: inline-block;
     flex-wrap: wrap;
     position: relative;
-    border-bottom: 10px #e29f80;
-    background-color: #dfb958;
-    background-image: linear-gradient(rgb(248, 203, 121), wheat);
+    background-color: rgb(233, 175, 104);
+    background-image: linear-gradient(rgb(233, 175, 104), wheat);
     background-size: 100% 95%;
     background-repeat: no-repeat;
 }
-
 
 .title{
     width: auto;
@@ -71,4 +71,34 @@ a:hover {
     margin-top: 30px;
     width: 100px;
     z-index: 1;
+}
+
+.gameMenu {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(233, 175, 104);
+}
+
+.gamePlay {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    display: inline-block;
+    flex-wrap: wrap;
+    position: relative;
+    background-color: #f9edcf;
+}
+
+.scoreBoard {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    display: inline-block;
+    flex-wrap: wrap;
+    position: relative;
+    background-color: #f9edcf;
 }
