@@ -87,7 +87,13 @@ a:hover {
     overflow-x: hidden;
 }
 
-canvas {}
+#canvasGame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid black;
+}
 
 .scoreBoard {
     width: 100%;

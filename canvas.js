@@ -12,11 +12,32 @@ function addPointsIcon(url){
     addIcon.src = url
     document.body.append(image)
 }*/
+window.addEventListener('load', function(){
+    let canvas = document.getElementById('canvasGame');
+    let c = canvas.getContext('2d');
+    canvas.width = 700;
+    canvas.height = 700;
 
-let canvas = document.querySelector('canvas');
+    class InputHandler {
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    }
 
-let c = canvas.getContext('2d');
+    class Pug {
+
+    }
+
+    class Background {
+
+    }
+
+    class Subtractpointsicon {
+
+    }
+
+    class Addpointsicon {
+
+    }
+
+    function addPoints
+})
 
