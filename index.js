@@ -1,0 +1,11 @@
+function newImage(url){
+    let image = document.createElement('img')
+    image.src = url
+    document.body.append(image)
+    return image
+}
+
+let bark = $('#bark')[0];
+$("nav a").mouseenter(function() {
+Audio.play();
+});

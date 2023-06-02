@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"  href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+    </head>
+    <body>
+        <audio autoplay loop> <!--autoplay loop -->
+            <source src="./assets/8bit-music-for-game-68698.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="bark" src="assets/puppy-wolf.mp3" preload="auto"></audio>
+            <div class="page">
+                <div class="startMenu"> <!--Start window-->
+                    <div class="title"><a>Go Pug, Go!</a></div> <!--centered pug image-->
+                    <div class="button"><a href="./gameplay.html">Start game</a></div> <!--Buttons on start menu-->
+                    <div class="button"><a href="./scoreboard.html">Scoreboard</a></div>
+                </div>
+                <img class="pug" src="assets/running-pug (2).gif" alt="pug running gif" onclick="document.getElementById('bark').play();">
+            </div>
+        <script src="index.js" async defer></script>
+    </body>
+</html>
