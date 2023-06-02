@@ -79,17 +79,15 @@ a:hover {
     background-color: rgb(233, 175, 104);
 }
 
-.gamePlay {
+.gamePlay { /* will need to change so side scrolling contains layout of the game */
     width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
-    display: inline-block;
-    flex-wrap: wrap;
-    position: relative;
-    background-color: #f9edcf;
 }
+
+canvas {}
 
 .scoreBoard {
     width: 100%;
