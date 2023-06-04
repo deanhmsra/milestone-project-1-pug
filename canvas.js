@@ -42,20 +42,34 @@ window.addEventListener('load', function(){
             this.gameWidth = gameWidth;
             this.gameHeight = gameHeight;
             this.width = 120;
-            this.height = 75;
-            this.x = 10;
-            this.y = this.gameHeight - this.height;
+            this.height = 80;
+            this.x = 50;
+            this.y = 250;
             this.image = document.getElementById('pug');
             this.frameX = 0;
             this.frameY = 0;
+            this.speed = 0;
+            this.vy = 2;
         }
         draw(context){
-            context.fillStyle = 'black';
+            context.fillStyle = 'transparent';
             context.fillRect(this.x, this.y, this.width, this.height);
-            context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+            context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
         }
-        update(){
-            this.x++;
+        update(input){
+            this.y += this.speed;
+            if (this.y < 0) this.y = 0;
+            else if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height;
+            if (input.keys.indexOf('ArrowUp') > -1){
+                this.speed = -5;
+            } else if (input.keys.indexOf('ArrowDown') > -1){
+                this.speed = 5;
+            } else {
+                this.speed = 0;
+            }
+            //Vertical movement
+            //Horizonal movement
+
         }
     }
 
@@ -85,7 +99,7 @@ window.addEventListener('load', function(){
     function animate(){
         c.clearRect(0,0,canvas.width, canvas.height)
         pug.draw(c);
-        pug.update();
+        pug.update(input);
         requestAnimationFrame(animate);
     }
     animate();
