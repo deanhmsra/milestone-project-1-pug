@@ -17,6 +17,7 @@ window.addEventListener('load', function(){
     let c = canvas.getContext('2d');
     canvas.width = 810;
     canvas.height = 510;
+    let subtractpointsicons = [];
 
     class InputHandler {
         constructor(){
@@ -33,7 +34,7 @@ window.addEventListener('load', function(){
                         e.key === 'ArrowUp'){
                     this.keys.splice(this.keys.indexOf(e.key), 1)
                 }
-            })
+            });
         }
     }
 
@@ -67,18 +68,45 @@ window.addEventListener('load', function(){
             } else {
                 this.speed = 0;
             }
-            //Vertical movement
-            //Horizonal movement
-
         }
     }
 
     class Background {
-
+        constructor(gameWidth, gameHeight){
+            this.gameWidth = gameWidth;
+            this.gameHeight = gameHeight;
+            this.image = document.getElementById('background');
+            this.x = 0;
+            this.y = 0;
+            this.width = 2400;
+            this.height = 720; 
+            this.speed = 3; 
+        }
+        draw(context){
+            context.drawImage(this.image, this.x, this.y, this.width, this.height)
+            context.drawImage(this.image, this.x + this.width - this.speed, this.y, this.width, this.height)
+        }
+        update(){
+            this.x -= this.speed;
+            if (this.x < 0 - this.width) this.x = 0;
+        }
     }
 
     class Subtractpointsicon {
-
+        constructor(gameWidth, gameHeight){
+            this.gameWidth = gameWidth;
+            this.gameHeight = gameHeight;
+            this.image = document.getElementById('mushroom');
+            this.x = this.gameWidth;
+            this.y = 400;
+            this.speed = 1;//3
+        }
+        draw(context){
+            context.drawImage(this.image, this.x, this.y);
+        }
+        update(){
+           this.x -= this.speed;
+        }
     }
 
     class Addpointsicon {
@@ -89,19 +117,32 @@ window.addEventListener('load', function(){
 
     }
 
+    subtractpointsicons.push(new Subtractpointsicon(canvas.width, canvas.height));
     function subtractPoints(){
-
+        subtractpointsicons.forEach(mushroom => {
+            mushroom.draw(c);
+            mushroom.update();
+        })
     }
 
     const input = new InputHandler();
     const pug = new Pug(canvas.width, canvas.height);
+    const background = new Background(canvas.width, canvas.height);
 
-    function animate(){
+    let lastTime = 0;
+
+    function animate(timeStamp){
+        const deltaTime = timeStamp - lastTime;
+        lastTime = timeStamp;
+        console.log(deltaTime)
         c.clearRect(0,0,canvas.width, canvas.height)
+        background.draw(c);
+        //background.update();
         pug.draw(c);
         pug.update(input);
+        subtractPoints(deltaTime);
         requestAnimationFrame(animate);
     }
-    animate();
+    animate(0);
 })
 
