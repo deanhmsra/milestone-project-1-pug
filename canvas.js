@@ -17,7 +17,9 @@ window.addEventListener('load', function(){
     let c = canvas.getContext('2d');
     canvas.width = 810;
     canvas.height = 510;
-    let subtractpointsicons = [];
+    let mushrooms = [];
+    let score = 0;
+    let gameOver = false;
 
     class InputHandler {
         constructor(){
@@ -42,22 +44,48 @@ window.addEventListener('load', function(){
         constructor(gameWidth, gameHeight){
             this.gameWidth = gameWidth;
             this.gameHeight = gameHeight;
-            this.width = 120;
+            this.width = 125;
             this.height = 80;
             this.x = 50;
             this.y = 250;
             this.image = document.getElementById('pug');
             this.frameX = 0;
+            this.maxFrame = 4;
+            this.fps = 20;
+            this.frameTimer = 0;
+            this.frameInterval = 500/this.fps;
             this.frameY = 0;
             this.speed = 0;
-            this.vy = 2;
         }
         draw(context){
+            context.strokeStyle = 'white';
+            context.strokeRect(this.x, this.y, this.width, this.height);
+            context.beginPath();
+            context.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
+            context.stroke();
             context.fillStyle = 'transparent';
             context.fillRect(this.x, this.y, this.width, this.height);
             context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
         }
-        update(input){
+        update(input, deltaTime, mushrooms){
+            //collision detection
+            mushrooms.forEach(mushroom => {
+                const dx = mushroom.x - this.x;
+                const dy = mushroom.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mushroom.width/2 + this.width/2){
+                    gameOver = true;
+                }
+            });
+            //sprite animation
+            if (this.frameTimer > this.frameInterval) {
+            if (this.frameX >= this.maxFrame) this.frameX = 0;
+            else this.frameX++;
+            this.frameTimer = 0;
+        } else {
+            this.frameTimer += deltaTime;
+        }
+            //controls
             this.y += this.speed;
             if (this.y < 0) this.y = 0;
             else if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height;
@@ -99,13 +127,22 @@ window.addEventListener('load', function(){
             this.image = document.getElementById('mushroom');
             this.x = this.gameWidth;
             this.y = 400;
-            this.speed = 1;//3
+            this.width = 40;
+            this.height = 40;
+            this.speed = 3;//3
+            this.markedForDeletion = false;
         }
         draw(context){
-            context.drawImage(this.image, this.x, this.y);
+            context.strokeStyle = 'white';
+            context.strokeRect(this.x, this.y, this.width, this.height);
+            context.beginPath();
+            context.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
+            context.stroke();
+            context.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
-        update(){
+        update(deltaTime){
            this.x -= this.speed;
+           if (this.x < 0 - this.width) this.markedForDeletion = true;
         }
     }
 
@@ -117,12 +154,36 @@ window.addEventListener('load', function(){
 
     }
 
-    subtractpointsicons.push(new Subtractpointsicon(canvas.width, canvas.height));
-    function subtractPoints(){
-        subtractpointsicons.forEach(mushroom => {
+    
+    function subtractPoints(deltaTime){
+        if (mushroomTimer > mushroomInterval + randomMushroomInterval){
+            mushrooms.push(new Subtractpointsicon(canvas.width, canvas.height));
+            randomMushroomInterval = Math.random() * 7000 + 1900;
+            mushroomTimer = 0;
+        } else {
+            mushroomTimer += deltaTime;
+        }
+        mushrooms.forEach(mushroom => {
             mushroom.draw(c);
-            mushroom.update();
-        })
+            mushroom.update(deltaTime);
+        });
+        mushrooms.filter(Subtractpointsicon => !Subtractpointsicon.markedForDeletion);
+    }
+
+    function displayCurrentScore(context) {
+        context.fillStyle = 'brown';
+        context.font = "40px Caveat";
+        context.fillText('Score: ' + score, 660, 50);
+        context.fillStyle = 'white';
+        context.font = "40px Caveat";
+        context.fillText('Score: ' + score, 662, 53);
+        if (gameOver){
+            context.textAlign = 'center';
+            context.fillStyle = 'brown';
+            context.fillText('GAME OVER', canvas.width/2, 200);
+            context.fillStyle = 'white';
+            context.fillText('GAME OVER', canvas.width/2 + 2, 20);
+        }
     }
 
     const input = new InputHandler();
@@ -130,6 +191,9 @@ window.addEventListener('load', function(){
     const background = new Background(canvas.width, canvas.height);
 
     let lastTime = 0;
+    let mushroomTimer = 0;
+    let mushroomInterval = 1000;
+    let randomMushroomInterval = Math.random() * 7000 + 1000;
 
     function animate(timeStamp){
         const deltaTime = timeStamp - lastTime;
@@ -137,11 +201,12 @@ window.addEventListener('load', function(){
         console.log(deltaTime)
         c.clearRect(0,0,canvas.width, canvas.height)
         background.draw(c);
-        //background.update();
+       // background.update();
         pug.draw(c);
-        pug.update(input);
+        pug.update(input, deltaTime, mushrooms);
         subtractPoints(deltaTime);
-        requestAnimationFrame(animate);
+        displayCurrentScore(c);
+        if (!gameOver) requestAnimationFrame(animate);
     }
     animate(0);
 })
