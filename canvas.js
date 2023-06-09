@@ -258,10 +258,10 @@ window.addEventListener('load', function(){
 
     let lastTime = 0;
     let mushroomTimer = 0;
-    let mushroomInterval = 1000;
+    let mushroomInterval = 500;
     let randomMushroomInterval = Math.random() * 1000 + 500;
     let dogTreatTimer = 0;
-    let dogTreatInterval = 1000;
+    let dogTreatInterval = 500;
     let randomDogTreatInterval = Math.random() * 1000 + 500;
 
     function animate(timeStamp){
