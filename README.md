@@ -10,3 +10,13 @@ I chose this format to help condense the code so I used classes to help easily c
 Creating classes also helped keeping objects separate but at the same time they could interact with eachother, such as when a character touches an object.
 
 I overall had fun with this project and learned a lot about creating a simple 2d game using canvas.
+
+# Resources 
+Youtube video: https://www.youtube.com/watch?v=7JtLHJbm0kA&t=1968s
+images
+background wallpaper - https://pixabay.com/illustrations/background-texture-wall-graphic-1589825/
+mushroom - https://www.freepik.com/free-vector/flat-design-pixel-art-food-illustration_38528646.htm#query=8%20bit%20mushroom&position=7&from_view=search&track=location_fest_v1
+dog treat img - https://www.istockphoto.com/vector/pixel-art-8-bit-style-dog-bone-toy-icon-on-white-background-isolated-vector-gm1201186482-344370667
+pug sprite gif - https://i.gifer.com/Xqg8.gif
+audio music - https://pixabay.com/sound-effects/8bit-music-for-game-68698/
+puppy bark sound - https://www.101soundboards.com/sounds/1467744-puppy-wolf
