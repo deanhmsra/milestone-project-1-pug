@@ -11,6 +11,10 @@ Creating classes also helped keeping objects separate but at the same time they 
 
 I overall had fun with this project and learned a lot about creating a simple 2d game using canvas.
 
+How to play:
+Use the up and down arrows to move your pug up and down. Collect as many treats as possible and watch out for mushrooms!
+If you touch a mushroom then it's game over!
+
 # Resources 
 Youtube video: https://www.youtube.com/watch?v=7JtLHJbm0kA&t=1968s
 images
