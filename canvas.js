@@ -47,7 +47,6 @@ window.addEventListener('load', function(){
             this.speed = 0;
             this.markedForDeletion = false;
             this.score = 0;
-            this.debug = true;
         }
         restart(){
             this.x = 60;
@@ -55,14 +54,12 @@ window.addEventListener('load', function(){
             this.maxFrame = 4;
         }
         draw(context){
-            if (this.debug) {
             context.strokeStyle = 'transparent';
             context.beginPath();
             context.arc(this.x + this.width/2, this.y + this.height/2, this.width/3, 0, Math.PI * 2);
             context.stroke();
             context.fillStyle = 'transparent';
             context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
-            }
         }
         update(input, deltaTime, mushrooms, dogTreats){
             //collision detection for mushrooms
@@ -142,16 +139,13 @@ window.addEventListener('load', function(){
             this.height = 40;
             this.speed = 8;
             this.markedForDeletion = false;
-            this.debug = true;
         }
         draw(context){
-            if (this.debug) {
             context.strokeStyle = 'transparent';
             context.beginPath();
             context.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
             context.stroke();
             context.drawImage(this.image, this.x, this.y, this.width, this.height);
-            }
         }
         update(deltaTime){
            this.x -= this.speed;
@@ -231,14 +225,14 @@ window.addEventListener('load', function(){
         }
     }
 
-    function restartGame(){
+    /*function restartGame(){
         player.restart();
         background.restart();
         dogTreats = [];
         score = 0;
         gameOver = false;
         animate(0);
-    }
+    }*/
 
     function toggleFullScreen() {
         console.log(document.fullScreenElement);
