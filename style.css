@@ -47,13 +47,53 @@
     background-color: antiquewhite;
 }
 
-.button, a:link, a:visited {
+.howToPlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    margin-top: 10%;
+    border-radius: 13px;
+    border-style: ridge;
+    border-width: 10px;
+    border-color: bisque;
+    background-color: #f9edcf;
+    color: #5C4033;
+    font-size: 12px;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+.button {
     border: solid 4px #5C4033;
     border-radius: 13px;
     background-color: #5C4033;
     color: rgb(246, 236, 218);
     height: 100%;
     font-size: 30px;
+    font-family: 'Caveat';
+    text-align: center;
+    margin: 15px;
+    text-decoration: none;
+}
+
+.attributions, a.attributions:visited {
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:#5C4033;
+    font-size: 10px;
+}
+
+a:link, a:visited {
+    color: rgb(246, 236, 218);
+    height: 100%;
     font-family: 'Caveat';
     text-align: center;
     margin: 15px;
@@ -79,8 +119,7 @@ a:hover {
     background-color: rgb(233, 175, 104);
 }
 
-.gamePlay { /* will need to change so side scrolling contains layout of the game */
-    width: 100%;
+.gamePlay { 
     height: 100%;
     margin: 0px;
     padding: 0px;
@@ -89,10 +128,13 @@ a:hover {
 
 #canvasGame {
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
+    max-width: 100%;
+    max-height: 100%;
     transform: translate(-50%, -50%);
-    border: 5px solid black;
+    border: 5px solid darkred;
+    box-sizing: border-box;
 }
 
 .scoreBoard {
@@ -105,4 +147,36 @@ a:hover {
     flex-wrap: wrap;
     position: relative;
     background-color: #f9edcf;
+}
+
+#background {
+    display: none;
+}
+
+#pug {
+    display: none;
+}
+
+#mushroom {
+    display: none;
+}
+
+#dogTreat {
+    display: none;
+}
+
+#fullScreenButton {
+    position: absolute;
+    font-size: 20px;
+    padding: 2px;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: solid 4px #5C4033;
+    border-radius: 13px;
+    background-color: #5C4033;
+    color: rgb(246, 236, 218);
+    font-family: 'Caveat';
+    font-size: 20px;
+    text-align: center;
 }
